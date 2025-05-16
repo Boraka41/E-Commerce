@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - E-Commerce</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+        }
+        .product-card {
+            background: white;
+            width: 250px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+            background-color: #f1f1f1;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            margin: 10px 0 5px;
+        }
+        .product-card p {
+            margin: 5px 0;
+        }
+        .product-card span {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    <span style="margin-left: 10px;">Product Category: <span th:text="${category}"></span></span>
+</header>
+<div class="product-container">
+    <div class="product-card" th:each="product : ${products}">
+        <img th:src="@{${product.image}}" alt="Product Image">
+        <h3 th:text="${product.productName}"></h3>
+        <p th:text="'Price: ' + ${product.price}"></p>
+        <span th:text="'$' + ${product.price}"></span>
+
+        <form th:action="@{/cart-item/add}" method="post">
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <input type="number" name="quantity" value="1" min="1" style="width: 50px; margin-right: 5px;" />
+            <button type="submit">Sepete Ekle</button>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

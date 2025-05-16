@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - E-Commerce</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+    header {
+      background: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+    .checkout-container {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .checkout-section {
+      margin-bottom: 25px;
+    }
+    .checkout-section h3 {
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .checkout-section input, .checkout-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+  <span style="margin-left: 10px;">Checkout</span>
+</header>
+<div class="checkout-container">
+  <form action="/confirm-order" method="post">
+    <div class="checkout-section">
+      <h3>Shipping Address</h3>
+      <input type="text" name="fullName" placeholder="Full Name" required>
+      <input type="text" name="address" placeholder="Street Address" required>
+      <input type="text" name="city" placeholder="City" required>
+      <input type="text" name="zip" placeholder="ZIP Code" required>
+    </div>
+
+    <div class="checkout-section">
+      <h3>Payment Details</h3>
+      <input type="text" name="cardNumber" placeholder="Card Number" required>
+      <input type="text" name="expiry" placeholder="MM/YY" required>
+      <input type="text" name="cvv" placeholder="CVV" required>
+    </div>
+
+    <button class="submit-btn" type="submit">Complete Order</button>
+  </form>
+</div>
+</body>
+</html>

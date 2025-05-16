@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile - E-Commerce</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        header {
+          background: #007bff;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          font-size: 24px;
+        }
+        .profile-container {
+          max-width: 600px;
+          margin: 30px auto;
+          background: white;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-container h2 {
+          margin-bottom: 20px;
+          color: #333;
+        }
+        .profile-container label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        .profile-container input {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        .profile-container button {
+          width: 100%;
+          padding: 12px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        .profile-container button:hover {
+          background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle;" />
+    <span style="margin-left: 10px;">My Profile</span>
+</header>
+<div class="profile-container">
+    <h2>Profile Information</h2>
+    <form th:action="@{/update-profile}" method="post" th:object="${user}">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" th:field="*{fullName}" placeholder="Full Name" required />
+
+        <label for="username">Username</label>
+        <input type="text" id="username" th:field="*{username}" placeholder="Username" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="••••••" required />
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+</body>
+</html>

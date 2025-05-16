@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart - E-Commerce</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background: #f8f8f8;
+        }
+        header {
+          background: #444;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          font-size: 24px;
+        }
+        .cart-container {
+          max-width: 1000px;
+          margin: 30px auto;
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        .cart-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #ddd;
+          padding: 15px 0;
+        }
+        .cart-item:last-child {
+          border-bottom: none;
+        }
+        .cart-item img {
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+        .cart-item-details {
+          flex: 1;
+          margin-left: 20px;
+        }
+        .cart-item-actions {
+          text-align: right;
+        }
+        .cart-summary {
+          text-align: right;
+          margin-top: 20px;
+        }
+        .cart-summary h3 {
+          margin-bottom: 10px;
+        }
+        .checkout-btn {
+          background-color: #28a745;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        .checkout-btn:hover {
+          background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    <span style="margin-left: 10px;">Your Shopping Cart</span>
+</header>
+<div class="cart-container" th:if="${cart != null}">
+    <div th:each="item : ${cart.cartItems}" class="cart-item">
+        <img th:src="@{'/images/' + ${item.product.image}}" alt="Product Image" />
+        <div class="cart-item-details">
+            <h4 th:text="${item.product.productName}"></h4>
+            <p>Quantity: <span th:text="${item.quantity}"></span></p>
+            <p>Price: $<span th:text="${item.product.price}"></span></p>
+        </div>
+        <div class="cart-item-actions">
+            <p><strong>$<span th:text="${item.product.price * item.quantity}"></span></strong></p>
+            <button style="background: none; border: none; color: red; cursor: pointer;"
+                    th:onclick="'/cart/remove/' + ${item.product.id}">Remove</button>
+        </div>
+    </div>
+    
+    <div class="cart-summary">
+        <h3>Total: $<span th:text="${cart.totalAmount}"></span></h3>
+        <button class="checkout-btn" onclick="location.href='/checkout'">Proceed to Checkout</button>
+    </div>
+</div>
+
+<!-- Eğer sepet yoksa -->
+<div th:if="${cart == null}" class="cart-empty">
+    <p>Your cart is empty. Start shopping!</p>
+    <a href="/index" class="checkout-btn">Go to Products</a>
+</div>
+
+</body>
+</html>

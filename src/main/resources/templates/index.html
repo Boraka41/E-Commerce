@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - E-Commerce</title>
+  <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+    }
+    header {
+        background: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .category-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 30px;
+    }
+    .category-card {
+        background: white;
+        width: 200px;
+        margin: 15px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .category-card:hover {
+        transform: scale(1.05);
+        background-color: #f1f1f1;
+    }
+    .category-card h3 {
+        margin: 10px 0 0;
+    }
+    .profile-button {
+        padding: 10px 15px;
+        background-color: #555;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .profile-button:hover {
+        background-color: #444;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle;">
+    <span style="margin-left: 10px;">My E-Commerce Site</span>
+  </div>
+  <button class="profile-button" onclick="window.location.href='/profile'">Profile</button>
+</header>
+<div class="category-container">
+  <div class="category-card" th:each="category : ${categories}"
+       th:data-category="${category}"
+       onclick="location.href='/products?category=' + this.getAttribute('data-category')">
+    <h3 th:text="${category}"></h3>
+  </div>
+</div>
+</body>
+</html>

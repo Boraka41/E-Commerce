@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Register - E-Commerce</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        header {
+            background: #28a745;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+        }
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 85vh;
+        }
+        .register-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .register-box input[type="text"],
+        .register-box input[type="email"],
+        .register-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .register-box button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register-box button:hover {
+            background: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <span style="margin-left: 10px;">My E-Commerce Site</span>
+</header>
+<div class="register-container">
+    <div class="register-box">
+        <h2>Create Account</h2>
+        <form th:action="@{/register}" th:object="${userDto}" method="post">
+            <input type="text" th:field="*{fullName}" placeholder="Full Name" required />
+            <input type="text" th:field="*{username}" placeholder="Username" required />
+            <input type="email" th:field="*{email}" placeholder="Email" required />
+            <input type="password" th:field="*{password}" placeholder="Password" required />
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

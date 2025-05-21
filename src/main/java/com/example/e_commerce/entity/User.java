@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "user")
@@ -38,6 +40,17 @@ public class User {
     @Column(nullable = false)
     private String role;
 
+    @NotBlank
+    @Column(nullable = false)
+    private String country;
+
+    @NotBlank
+    @Column(nullable = false)
+    private int age;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String gender;
 
     public @NotBlank @Size(min = 3, max = 20) String getUsername() {
         return username;
@@ -45,22 +58,6 @@ public class User {
 
     public void setUsername(@NotBlank @Size(min = 3, max = 20) String username) {
         this.username = username;
-    }
-
-    public @NotBlank @Email String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@NotBlank @Email String email) {
-        this.email = email;
-    }
-
-    public @NotBlank @Size(min = 6) String getPassword() {
-        return password;
-    }
-
-    public void setPassword(@NotBlank @Size(min = 6) String password) {
-        this.password = password;
     }
 
     public @NotBlank String getFullName() {
@@ -71,6 +68,30 @@ public class User {
         this.fullName = fullName;
     }
 
+    public @NotBlank @Size(min = 6) String getPassword() {
+        return password;
+    }
+
+    public void setPassword(@NotBlank @Size(min = 6) String password) {
+        this.password = password;
+    }
+
+    public @NotBlank @Email String getEmail() {
+        return email;
+    }
+
+    public void setEmail(@NotBlank @Email String email) {
+        this.email = email;
+    }
+
+    public @NotBlank String getCountry() {
+        return country;
+    }
+
+    public void setCountry(@NotBlank String country) {
+        this.country = country;
+    }
+
     public @NotBlank String getRole() {
         return role;
     }
@@ -79,7 +100,25 @@ public class User {
         this.role = role;
     }
 
+    @NotBlank
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(@NotBlank int age) {
+        this.age = age;
+    }
+
+    public @NotBlank String getGender() {
+        return gender;
+    }
+
+    public void setGender(@NotBlank String gender) {
+        this.gender = gender;
+    }
+
     public Long getId() {
         return id;
     }
+
 }
